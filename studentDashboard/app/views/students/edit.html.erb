@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Edit Student</title>
+</head>
+<body>
+	  <% if flash[:failed] %>
+	  <% flash[:failed].each do |value| %>
+        <div class="alert alert-failed"><%= value %></div>
+      <% end %>
+       <% end %>
+ 
+	<form action="/dojos/<%= @student.dojo_id %>/students/<%= @student.id %>" method="post">
+		<input type="hidden" name="_method" value="patch">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<h1>Edit Student</h1>
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="first_name" value="<%= @student.first_name %>"></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="last_name" value="<%= @student.last_name %>"></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" value="<%= @student.email %>"></td>
+			</tr>
+			<tr>
+				<td>Dojo:</td>
+				<td>
+					<input type="text" name="dojo" value="<%= @student.dojo_id %>" maxlength="2"> 
+					<select name="dojo" id=""> 
+						<% @dojos.each do |dojo| %>
+							<option value="<%= dojo.id%>" <% if @student.dojo_id == dojo.id %>selected="selected" <% end %>  ><%= dojo.branch%></option>
+						<% end %>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="Update">
+	</form>
+	<a href="/goback">Home</a>
+	<a href="/dojos/<%= @dojo.id %>">Show</a>
+</body>
+</html>

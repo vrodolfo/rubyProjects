@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Show Dojo</title>
+</head>
+<body>
+ 
+		<h1>Show Dojo</h1>
+		<table>
+			<tr>
+				<td>Branch:</td>
+				<td><%= @dojo.branch %> <a href="/dojos/<%= @dojo.id %>/edit">Edit</a></td>
+			</tr>
+			<tr>
+				<td>Street:</td>
+				<td><%= @dojo.street %></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><%= @dojo.city %></td>
+			</tr>
+			<tr>
+				<td>State:</td>
+				<td><%= @dojo.state %></td>
+			</tr>
+		</table>
+
+		<a href="/goback">Home</a>
+
+		<h2>Student Roster</h2>
+		<table>
+		<tr>
+			<td>First Name</td>
+			<td>Last Name</td>
+			<td>Email</td>
+			<td>Action</td>
+		</tr>
+		<% @students.each do |x| %>
+			<tr>
+				<td><%= x.first_name %></td>
+				<td><%= x.last_name %></td>
+				<td><%= x.email %></td>
+				<td>
+					<a href="/dojos/<%= @dojo.id %>/students/<%= x.id %>">Show</a> |
+					<a href="/dojos/<%= @dojo.id %>/students/<%= x.id %>/edit/">Edit</a> |
+					<a href="/dojos/<%= @dojo.id %>/students/<%= x.id %>" data-method="DELETE">Destroy</a> 
+				</td>
+				
+			</tr>
+		<% end %>
+	</table>
+	<a href="/dojos/<%= @dojo.id %>/students/new">Add Student</a>
+</body>
+</html>

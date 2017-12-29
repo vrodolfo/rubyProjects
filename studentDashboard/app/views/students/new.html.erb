@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>New Student</title>
+</head>
+<body>
+	  <% if flash[:failed] %>
+	  <% flash[:failed].each do |value| %>
+        <div class="alert alert-failed"><%= value %></div>
+      <% end %>
+      <% end %>
+ 
+	<form action="/dojos/<%= @dojo.id %>/students" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<h1>Add a new Student</h1>
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="first_name" value="<%= session[:first_name] %>"></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="last_name" value="<%= session[:last_name] %>"></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" value="<%= session[:email] %>"></td>
+			</tr>
+			<tr>
+				<td>Dojo:</td>
+				<td>
+					<select name="dojo" id=""> 
+						<% @dojos.each do |dojo| %>
+							<option value="<%= dojo.id%>" <% if @dojo.id == dojo.id %>selected="selected" <% end %>  ><%= dojo.branch%></option>
+						<% end %>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="Create">
+	</form>
+	<a href="/goback">Home</a>
+</body>
+</html>

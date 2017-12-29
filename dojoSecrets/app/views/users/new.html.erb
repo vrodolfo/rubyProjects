@@ -1,0 +1,24 @@
+	
+	<form action="<%= userCreate_path %>" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<h1>Create a new User</h1>
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="Name" value="<%= session[:name] %>"></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="Email" value="<%= session[:email] %>"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="Password" value=""></td>
+			</tr>
+			<tr>
+				<td>Confirm Password:</td>
+				<td><input type="password" name="Password_Confirmation" value=""></td>
+			</tr>
+		</table>
+		<input type="submit" value="Join">
+	</form>

@@ -1,0 +1,34 @@
+body{
+	font-family: arial;
+	background-color: white;
+}
+
+.container{
+	vertical-align: top;
+	display: inline-block;
+	border: 3px solid #7A1045;
+	margin: 10px 10px 10px 10px ;
+	padding: 10px 10px 10px 10px ;
+}
+
+.header{
+	display: block;
+}
+
+h1{
+	color: #D83B4C;
+}
+
+h2{
+	color: #D83B4C;
+}
+
+td{
+	color: #DB440B;
+}
+.button{
+	border: 1px solid #4B1F43;
+	border-radius: 10px;
+	background-color: #DD430F;
+	color: white;
+}

@@ -1,0 +1,30 @@
+<h1>Edit User <%= current_user.name %></h1>
+
+<form action="<%= userUpdate_path current_user.id %>" method="post">
+		<input type="hidden" name="_method" value="patch">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<h1>Edit User</h1>
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="Name" value="<%= current_user.name %>"></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="Email" value="<%= current_user.email %>"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="Password" value=""></td>
+			</tr>
+			<tr>
+				<td>Confirm Password:</td>
+				<td><input type="password" name="Password_Confirmation" value=""></td>
+			</tr>
+		</table>
+		<input type="submit" value="Update">
+</form>
+<form action="<%= userDestroy_path current_user.id %>" method="post">
+	<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete Account">
+</form>

@@ -1,0 +1,39 @@
+<h1>Edit User <%= @current_user.first_name %></h1>
+
+<form action="<%= usersUpdate_path @current_user.id %>" method="post">
+		<input type="hidden" name="_method" value="patch">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="first_name" value="<%= @current_user.first_name %>"></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="last_name" value="<%= @current_user.last_name %>"></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" value="<%= @current_user.email %>"></td>
+			</tr>
+			<tr>
+				<td>Location:</td>
+				<td><input type="text" name="location" value="<%= @current_user.location %>"></td>
+			</tr>
+			<tr>
+				<td>State:</td>
+				<td>
+					<select name="state" id="">
+						<option <%if @current_user.state == "TX" %>selected="selected" <%end%> value="TX">TX</option>
+						<option <%if @current_user.state == "CA" %>selected="selected" <%end%> value="CA">CA</option>
+						<option <%if @current_user.state == "FL" %>selected="selected" <%end%> value="FL">FL</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<input class="button" type="submit" value="Update">
+</form>
+<form action="<%= usersDestroy_path @current_user.id %>" method="post">
+	<input type="hidden" name="_method" value="delete">
+	<input class="button" type="submit" value="Delete Account">
+</form>

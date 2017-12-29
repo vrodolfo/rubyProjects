@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	  <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+
+	<h1>Submitted Form</h1>
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><%= session[:name] %></td>
+		</tr>
+		<tr>
+			<td>Location:</td>
+			<td><%= session[:location] %></td>
+		</tr>
+		<tr>
+			<td>Language:</td>
+			<td><%= session[:language] %></td>
+		</tr>
+		<tr>
+			<td>Comment:</td>
+			<td><%= session[:comment] %></td>
+		</tr>
+	</table>
+	<a href="/">Go Back</a>
+	
+</body>
+</html>
+
+

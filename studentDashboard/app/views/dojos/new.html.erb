@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>New Dojo</title>
+</head>
+<body>
+	  <% if flash[:failed] %>
+	  <% flash[:failed].each do |value| %>
+        <div class="alert alert-failed"><%= value %></div>
+      <% end %>
+       <% end %>
+ 
+	<form action="/dojos" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<h1>Add a new Dojo</h1>
+		<table>
+			<tr>
+				<td>Branch:</td>
+				<td><input type="text" name="branch" value="<%= session[:branch] %>"></td>
+			</tr>
+			<tr>
+				<td>Street:</td>
+				<td><input type="text" name="street" value="<%= session[:street] %>"></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><input type="text" name="city" value="<%= session[:city] %>"></td>
+			</tr>
+			<tr>
+				<td>State:</td>
+				<td><input type="text" name="state" value="<%= session[:state] %>" maxlength="2"> </td>
+			</tr>
+		</table>
+		<input type="submit" value="Create">
+	</form>
+	<a href="/goback">Home</a>
+</body>
+</html>

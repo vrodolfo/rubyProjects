@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+</head>
+<body>
+	<h1>Index</h1>
+	<form action="surveys/create/" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<table>
+		<tr>
+			<td>Your Name:</td>
+			<td><input type="text" name="name"></td>
+		</tr>
+		<tr>
+			<td>Dojo Location:</td>
+			<td>
+				<select name="location" id="location">
+					<option value="">Select an Option</option>
+					<option value="Dallas">Dallas</option>
+					<option value="Miami">Miami</option>
+					<option value="New York">New York</option>
+					<option value="San Francisco">San Francisco</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Favorite Language:</td>
+			<td>
+				<select name="language" id="language">
+					<option value="">Select an Option</option>
+					<option value="Python">Python</option>
+					<option value="Ruby">Ruby</option>
+					<option value="Java">Java</option>
+					<option value="C++">C++</option>
+				</select>
+			</td>
+		</tr>
+		<tr><td><label for="">Comment:</label></td></tr>
+		<tr><td colspan="2"><textarea rows="4" cols="50" id="comment" name="comment"></textarea></td></tr>
+		<tr><td colspan="2"><input type="submit" value="Submit"> </td></tr>
+	</table>
+	</form>
+</body>
+</html>

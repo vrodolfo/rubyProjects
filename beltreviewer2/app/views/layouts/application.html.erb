@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LoginRegistration</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<% if flash[:failed] %>
+	  <% flash[:failed].each do |value| %>
+        <div class="alert alert-failed"><%= value %></div>
+      <% end %>
+<% end %>
+
+<% if flash[:success] %>
+	  <% flash[:success].each do |value| %>
+        <div class="alert alert-failed"><%= value %></div>
+      <% end %>
+<% end %>
+
+<% if session.key? 'user_id' %>
+  <a class="header" href="<%= sessionsDestroy_path %>" data-method="delete">Log Out</a>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

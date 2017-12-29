@@ -1,0 +1,71 @@
+<h1>Welcome!</h1>
+<div class="container hexagon">
+	<h1>Create New User</h1>
+	<form action="<%= usersCreate_path %>" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="user[first_name]" value="<%= session[:first_name] %>"></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="user[last_name]" value="<%= session[:last_name] %>"></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="user[email]" value="<%= session[:email] %>"></td>
+			</tr>
+			<tr>
+				<td>Location:</td>
+				<td><input type="text" name="user[location]" value="<%= session[:location] %>"></td>
+			</tr>
+			<tr>
+				<td>State:</td>
+				<td>
+					<select name="user[state]" id="">
+						<option <%if session[:state] == "TX" %>selected="selected" <%end%> value="TX">TX</option>
+						<option <%if session[:state] == "CA" %>selected="selected" <%end%> value="CA">CA</option>
+						<option <%if session[:state] == "FL" %>selected="selected" <%end%> value="FL">FL</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="user[password]"></td>
+			</tr>
+			<tr>
+				<td>Password Confirmation:</td>
+				<td><input type="password" name="user[password_confirmation]"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input class="button" type="submit" value="Register">
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</div>
+
+<div class="container">
+	<h1>Log In</h1>
+	<form action="<%= sessionsCreate_path %>" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<table>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" value="<%= session[:email2] %>"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input class="button"  type="submit" value="Log In">
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>

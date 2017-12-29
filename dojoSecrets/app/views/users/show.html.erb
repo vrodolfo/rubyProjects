@@ -1,0 +1,30 @@
+
+<%= current_user.name %>
+
+<h1>Crate a New Secret</h1>
+<div>
+	<h2>New Secret</h2>
+	<form action="<%= secretCreate_path current_user.id %>" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<textarea name="Content" id="Content" cols="30" rows="10"></textarea>
+		<input type="submit" value="Create Secret">
+	</form>
+</div>
+
+<div>
+	<h1> My Secrets </h1>
+	<% @secrets.each do |secret| %>
+		<h3><%= secret.content %></h3>
+		<form action="<%= secretDestroy_path(current_user.id, secret.id) %>" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<input type="hidden" name="_method" value="delete">
+			<input type="submit" value="Delete Secret">
+		</form>
+	<% end %>
+</div>
+<div>
+	<h1> Secrets Liked </h1>
+
+</div>
+
+

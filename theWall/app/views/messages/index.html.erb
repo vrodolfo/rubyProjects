@@ -1,0 +1,24 @@
+<header>
+	<h4>Coding Dojo Wall</h4>
+	<h3>Welcome <%= @user.username %></h3>
+	<a href="<%= root_path %>">Log Out</a>
+</header>
+
+
+<h1>Post a Message</h1>
+	 <% if flash[:failed] %>
+	  <% flash[:failed].each do |value| %>
+        <div class="alert alert-failed"><%= value %></div>
+      <% end %>
+      <% end %>
+<form action="<%= messages_create_path %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<textarea name="message[message]" id="message_message" cols="30" rows="10"></textarea>
+	<input type="submit" value="Post a Message">
+</form>
+
+
+<% @messages.each do |x| %>
+	<h3><%= x.user.username %> - <%= x.created_at %></h3>
+	<h4><%= x.message %></h4>			
+<% end %>

@@ -1,0 +1,105 @@
+Welcome <%= @current_user.first_name %>
+
+<a href="<%= usersEdit_path @current_user.id %>">Edit My Profile</a>
+
+<h1>Here Are some of the events at your state</h1>
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Date</td>
+		<td>Location</td>
+		<td>Host</td>
+		<td>People attending</td>
+		<td>Action/Status</td>
+	</tr>
+
+	<% @events_sameState.each do |event| %>
+		<tr>	
+			<td><a href="<%= eventsShow_path event.id %>"><%= event.name %></a></td>
+			<td><%= event.date.strftime("%B %d %Y") %></td>
+			<td><%= event.location %></td>
+			<td><%= event.user.first_name %></td>
+			<td><%= event.join_count %></td>
+			<td>
+				<% if event.user.id == @current_user.id %>
+					<a href="<%= eventsEdit_path event.id %>"  >Edit</a>
+					<a href="<%= eventsDestroy_path event.id %>" data-method="delete">Delete</a>
+				<% else %>
+					<% if User.find(@current_user).events_attending.include?(event) %>
+						 Joining | <a href="<%= eventsCancel_path event.id %>" data-method="post">Cancel</a>
+					<% else %>
+						<a href="<%= eventsJoin_path event.id %>" data-method="post">Join</a>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+
+<h1>Here Are some of the events on the other states</h1>
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Date</td>
+		<td>Location</td>
+		<td>State</td>
+		<td>Host</td>
+		<td>People attending</td>
+		<td>Action/Status</td>
+	</tr>
+
+	<% @events_otherState.each do |event| %>
+		<tr>	
+			<td><a href="<%= eventsShow_path event.id %>"><%= event.name %></a></td>
+			<td><%= event.date.strftime("%B %d %Y") %></td>
+			<td><%= event.location %></td>
+			<td><%= event.state %></td>
+			<td><%= event.user.first_name %></td>
+			<td><%= event.join_count %></td>
+			<td>
+				<% if event.user.id == @current_user.id %>
+					<a href="<%= eventsEdit_path event.id %>"  >Edit</a>
+					<a href="<%= eventsDestroy_path event.id %>" data-method="delete">Delete</a>
+				<% else %>
+					<% if User.find(@current_user).events_attending.include?(event) %>
+						 Joining | <a href="<%= eventsCancel_path event.id %>" data-method="post"> Cancel</a>
+					<% else %>
+						<a href="<%= eventsJoin_path event.id %>" data-method="post">Join</a>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+<form action="<%= eventsCreate_path %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<h2>Add Event</h2>	
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" maxlength="100" name="event[name]"></td>
+		</tr>
+		<tr>
+			<td>Date:</td>
+			<td><input type="date" name="event[date]" min="<%= Time.now.strftime("%Y-%m-%d") %>" required></td>
+		</tr>
+		<tr>
+			<td>Location:</td>
+			<td><input type="text" maxlength="100" name="event[location]"></td>
+			<td>
+				<select name="event[state]" id="">
+					<option value="TX">TX</option>
+					<option value="CA">CA</option>
+					<option value="FL">FL</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Add Event"></td>
+		</tr>
+
+	</table>
+</form>
+
